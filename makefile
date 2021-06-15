@@ -2,10 +2,10 @@ composer-install:
 	docker exec -it lara-app bash -c  "composer install"
 
 start:
-	docker-compose up -d && composer-install
+	docker-compose up -d && docker exec -it lara-app bash -c  "composer install"
 
 build:
-	docker-compose up -d --build && composer-install
+	docker-compose up -d --build && docker exec -it lara-app bash -c  "composer install"
 
 down:
 	docker-compose down
