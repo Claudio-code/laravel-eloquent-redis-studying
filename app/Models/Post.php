@@ -54,4 +54,25 @@ class Post extends Model
         'updated_at',
         'published_at',
     ];
+
+    /**
+     * if it class need change field before to save in database.
+     *
+     * @param mixed $value
+     */
+    public function setTitleAttribute(mixed $value): void
+    {
+        $this->attributes['title'] = strtolower($value);
+    }
+
+    /**
+     * if it class need change field before to show external entities.
+     *
+     * @param mixed $value
+     * @return mixed
+     */
+    public function getTitleAttribute(mixed $value): mixed
+    {
+        return ucfirst($value);
+    }
 }
