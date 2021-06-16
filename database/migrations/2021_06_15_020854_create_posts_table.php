@@ -19,7 +19,7 @@ class CreatePostsTable extends Migration
             $table->text('body');
             $table->enum('type', ['text', 'image']);
             $table->timestamps();
-            $table->timestamp('published_at');
+            $table->timestamp('published_at')->nullable();
         });
     }
 
