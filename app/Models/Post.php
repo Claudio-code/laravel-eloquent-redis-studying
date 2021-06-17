@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -10,7 +11,11 @@ class Post extends Model
 {
     use HasFactory;
 
-    /** @var array */
+    /**
+     * if it entity need insert data in bulk.
+     *
+     * @var string[]
+     */
     protected $fillable = [
         'title',
         'body',
@@ -48,7 +53,7 @@ class Post extends Model
     /**
      * if your class uses custom fields, define it name in array.
      *
-     * @var array
+     * @var string[]
      */
     protected $dates = [
         'created_at',
@@ -78,5 +83,17 @@ class Post extends Model
     public function scopeOfType(Builder $query, string $type): Builder
     {
         return $query->where('type', $type);
+    }
+
+    /**
+     * if it entity need run the filter in the class is instantiated.
+     */
+    public static function boot(): void
+    {
+        parent::boot();
+
+        static::addGlobalScope('published', function (Builder $builder) {
+            $builder->where('published_at', '<', Carbon::now()->format('Y-m-d H:i:s'));
+        });
     }
 }
