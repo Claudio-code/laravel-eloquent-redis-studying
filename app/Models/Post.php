@@ -6,10 +6,11 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     /**
      * if it entity need insert data in bulk.
@@ -58,6 +59,7 @@ class Post extends Model
     protected $dates = [
         'created_at',
         'updated_at',
+        'deleted_at',
         'published_at',
     ];
 
