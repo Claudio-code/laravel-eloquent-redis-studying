@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -57,8 +58,6 @@ class Post extends Model
 
     /**
      * if it class need change field before to save in database.
-     *
-     * @param mixed $value
      */
     public function setTitleAttribute(mixed $value): void
     {
@@ -67,12 +66,17 @@ class Post extends Model
 
     /**
      * if it class need change field before to show external entities.
-     *
-     * @param mixed $value
-     * @return mixed
      */
     public function getTitleAttribute(mixed $value): mixed
     {
         return ucfirst($value);
+    }
+
+    /**
+     * if it entity need filter in queries.
+     */
+    public function scopeOfType(Builder $query, string $type): Builder
+    {
+        return $query->where('type', $type);
     }
 }
