@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Shared\DTO;
+namespace App\DTO;
 
 interface AbstractDTO
 {

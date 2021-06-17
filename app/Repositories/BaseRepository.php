@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Shared\Repositories;
+namespace App\Repositories;
 
-use App\Shared\DTO\AbstractDTO;
+use App\DTO\AbstractDTO;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
@@ -20,9 +20,7 @@ abstract class BaseRepository
 
     private function refresh(): Model
     {
-        $this->model->refresh();
-
-        return $this->model;
+        return $this->model->refresh();
     }
 
     public function findAll(): Collection
