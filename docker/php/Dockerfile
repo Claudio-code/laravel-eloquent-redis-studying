@@ -12,6 +12,11 @@ RUN docker-php-ext-install pdo pdo_mysql \
     && docker-php-ext-install intl \
     && docker-php-ext-install zip
 
+RUN pecl install -o -f redis \
+    &&  rm -rf /tmp/pear \
+    &&  docker-php-ext-enable redis
+
+
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 RUN usermod -u 1000 www-data
