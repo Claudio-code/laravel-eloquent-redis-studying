@@ -15,3 +15,5 @@ yarn-error.log
 /.composer
 /docker/dbdata/
 redis
+/.config
+/.npm
