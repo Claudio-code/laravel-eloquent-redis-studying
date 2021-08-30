@@ -17,3 +17,4 @@ yarn-error.log
 redis
 /.config
 /.npm
+.php_cs.cache
